@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: department-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: department-app
+  template:
+    metadata:
+      labels:
+        app: department-app
+    spec:
+      containers:
+      - name: department-app
+        image: dilip087/department-portal:v1
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: department-service
+spec:
+Type: NodePort
+  selector:
+    app: department-app
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080
