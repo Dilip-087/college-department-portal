@@ -23,7 +23,7 @@ kind: Service
 metadata:
   name: department-service
 spec:
-Type: NodePort
+  type: NodePort
   selector:
     app: department-app
   ports:
